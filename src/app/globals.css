@@ -24,3 +24,85 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Mario Game Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3s ease-in-out infinite 1s;
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+/* Game UI Styling */
+.game-ui-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.pixel-border {
+  box-shadow: 
+    0 0 0 2px #000,
+    0 0 0 4px #fff,
+    0 0 0 6px #000;
+}
+
+/* Glitch effect for title */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch:hover {
+  animation: glitch 0.3s;
+}
