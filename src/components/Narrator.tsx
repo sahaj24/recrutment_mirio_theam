@@ -1,18 +1,29 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 interface NarratorProps {
   position: 'top' | 'middle' | 'bottom';
   dialogue: string;
+  upDialogue?: string; // New prop for upward scroll dialogue
+  downDialogue?: string; // New prop for downward scroll dialogue
+  hoverDialogues?: string[]; // Array of hover dialogues
   onDialogueClick?: () => void;
 }
 
-const Narrator: React.FC<NarratorProps> = ({ position, dialogue, onDialogueClick }) => {
+const Narrator: React.FC<NarratorProps> = ({ position, dialogue, upDialogue, downDialogue, hoverDialogues, onDialogueClick }) => {
   const [showDialogue, setShowDialogue] = useState(false);
   const [currentText, setCurrentText] = useState('');
   const [textIndex, setTextIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [currentDialogue, setCurrentDialogue] = useState(dialogue);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hoverIndex, setHoverIndex] = useState(0);
+  const [hasBeenHovered, setHasBeenHovered] = useState(false);
+  const narratorRef = useRef<HTMLDivElement>(null);
 
   // Position styles based on progression
   const getPositionStyles = () => {
@@ -40,37 +51,132 @@ const Narrator: React.FC<NarratorProps> = ({ position, dialogue, onDialogueClick
 
   const styles = getPositionStyles();
 
+  // Detect scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection('down');
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection('up');
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
+  // Update dialogue based on scroll direction and hover
+  useEffect(() => {
+    // Priority order: current hover > scroll direction > persistent hover > default
+    if (isHovered && hoverDialogues && hoverDialogues.length > 0) {
+      // Currently hovering - show hover dialogue
+      setCurrentDialogue(hoverDialogues[hoverIndex]);
+    } else if (scrollDirection === 'up' && upDialogue) {
+      // Scrolling up - show up dialogue (this overrides persistent hover)
+      setCurrentDialogue(upDialogue);
+    } else if (hasBeenHovered && hoverDialogues && hoverDialogues.length > 0) {
+      // Has been hovered before but not currently hovering or scrolling up - show hover dialogue
+      setCurrentDialogue(hoverDialogues[hoverIndex]);
+    } else {
+      // Default dialogue for down scroll or no special conditions
+      setCurrentDialogue(dialogue);
+    }
+  }, [scrollDirection, dialogue, upDialogue, isHovered, hasBeenHovered, hoverIndex, hoverDialogues]);
+
+  // Intersection Observer to detect when narrator comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of the narrator is visible
+        rootMargin: '0px 0px -100px 0px' // Start a bit before it's fully visible
+      }
+    );
+
+    if (narratorRef.current) {
+      observer.observe(narratorRef.current);
+    }
+
+    return () => {
+      if (narratorRef.current) {
+        observer.unobserve(narratorRef.current);
+      }
+    };
+  }, []);
+
+  // Start dialogue when narrator becomes visible
+  useEffect(() => {
+    if (isVisible && !showDialogue) {
+      const timer = setTimeout(() => {
+        setShowDialogue(true);
+      }, 500); // Small delay after becoming visible
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, showDialogue]);
+
+  // Reset dialogue when currentDialogue changes
+  useEffect(() => {
+    if (isVisible && showDialogue) {
+      setShowDialogue(false);
+      setTextIndex(0);
+      setCurrentText('');
+      
+      // Start new dialogue after a brief pause
+      const timer = setTimeout(() => {
+        setShowDialogue(true);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [currentDialogue, isVisible]);
+
   // Typewriter effect
   useEffect(() => {
-    if (showDialogue && textIndex < dialogue.length) {
+    if (showDialogue && textIndex < currentDialogue.length) {
       const timer = setTimeout(() => {
-        setCurrentText(dialogue.substring(0, textIndex + 1));
+        setCurrentText(currentDialogue.substring(0, textIndex + 1));
         setTextIndex(textIndex + 1);
       }, 50); // Typing speed
       return () => clearTimeout(timer);
     }
-  }, [showDialogue, textIndex, dialogue]);
-
-  // Auto-show dialogue after component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowDialogue(true);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  }, [showDialogue, textIndex, currentDialogue]);
 
   const handleCharacterClick = () => {
-    if (!showDialogue) {
+    if (!showDialogue && isVisible) {
       setShowDialogue(true);
       setTextIndex(0);
       setCurrentText('');
-    } else if (onDialogueClick) {
+    } else if (showDialogue && onDialogueClick) {
       onDialogueClick();
     }
   };
 
+  const handleMouseEnter = () => {
+    if (hoverDialogues && hoverDialogues.length > 0) {
+      setIsHovered(true);
+      setHasBeenHovered(true); // Mark as hovered once
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    // Don't reset hasBeenHovered - keep it true forever after first hover
+  };
+
+  const handleHoverClick = () => {
+    if (hoverDialogues && hoverDialogues.length > 0) {
+      // Cycle through hover dialogues
+      setHoverIndex((prev) => (prev + 1) % hoverDialogues.length);
+    }
+  };
+
   return (
-    <div className={styles.container}>
+    <div ref={narratorRef} className={styles.container}>
       {/* Dialogue Box */}
       {showDialogue && (
         <div className={styles.dialogueBox}>
@@ -81,7 +187,7 @@ const Narrator: React.FC<NarratorProps> = ({ position, dialogue, onDialogueClick
             
             <p className="text-black text-xs font-bold leading-tight" style={{ fontFamily: 'Arial Black, sans-serif' }}>
               {currentText}
-              {textIndex < dialogue.length && (
+              {textIndex < currentDialogue.length && (
                 <span className="animate-pulse">|</span>
               )}
             </p>
@@ -92,7 +198,9 @@ const Narrator: React.FC<NarratorProps> = ({ position, dialogue, onDialogueClick
       {/* Character */}
       <div 
         className={`${styles.character} cursor-pointer hover:scale-110 transition-transform duration-200`}
-        onClick={handleCharacterClick}
+        onClick={(isHovered || hasBeenHovered) ? handleHoverClick : handleCharacterClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Image 
           src="/quean.png" 

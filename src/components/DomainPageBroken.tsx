@@ -1,6 +1,12 @@
-'use client';
-
-import React from 'react';
+'use clien      {/* Narrator - Middle position */}
+      <Narrator 
+        position="middle" 
+        dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
+        upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
+        downDialogue="Finally ready for the real test? 💀 Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
+      />
+      
+      {/* Floating Clouds */}React from 'react';
 import Image from 'next/image';
 import Narrator from './Narrator';
 
@@ -13,10 +19,10 @@ const DomainPage = () => {
         position="middle" 
         dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
         upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
-        hoverDialogues={[
-          "What you want now? 😒 Stop hovering like a creepy stalker and PICK A DOMAIN! 👑💥",
-          "AGAIN?! 😡 You're testing my royal patience! Make your choice or face my wrath, mortal! ⚡👑"
-        ]}
+        downDialogue="Finally ready for the real test? 💀 Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
+      /> 
+        position="middle" 
+        dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! �⚡" 
       />
       
       {/* Floating Clouds */}
@@ -42,8 +48,8 @@ const DomainPage = () => {
           />
         </div>
 
-        {/* Domain Cards Container */}
-        <div className="flex flex-wrap justify-center gap-8 mb-8">
+        {/* Domain Cards */}
+        <div className="flex flex-col md:flex-row gap-6 justify-center items-center max-w-5xl mx-auto">
           
           {/* Technical Card */}
           <div 
@@ -55,8 +61,8 @@ const DomainPage = () => {
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <div className="w-64 h-72 relative bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg border-4 border-black shadow-2xl">
-              <div className="absolute inset-2 bg-gradient-to-b from-blue-300 to-blue-500 rounded border-2 border-blue-700">
+            <div className="w-64 h-72 relative bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-lg border-4 border-black shadow-2xl">
+              <div className="absolute inset-2 bg-gradient-to-b from-yellow-300 to-yellow-500 rounded border-2 border-yellow-700">
                 <div className="p-4 text-center h-full flex flex-col justify-between">
                   <div>
                     <div className="mb-3">
@@ -69,13 +75,13 @@ const DomainPage = () => {
                       />
                     </div>
                     <p className="text-base text-black font-semibold">
-                      Code • Debug • Build
+                      Code • Build • Innovate
                     </p>
                   </div>
                   <div className="text-sm text-black font-medium">
+                    Software Development<br/>
                     Web Development<br/>
-                    App Development<br/>
-                    Programming
+                    App Development
                   </div>
                 </div>
               </div>
@@ -147,9 +153,9 @@ const DomainPage = () => {
                     </p>
                   </div>
                   <div className="text-sm text-black font-medium">
-                    Event Management<br/>
                     Business Strategy<br/>
-                    Leadership
+                    Management<br/>
+                    Operations
                   </div>
                 </div>
               </div>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Narrator from './Narrator';
 
 const HeroSection = () => {
   const [showFallingBoss, setShowFallingBoss] = useState(false);
@@ -182,6 +183,17 @@ const HeroSection = () => {
           <Image src="/small_boss.png" alt="Falling Boss" fill className="object-contain" />
         </div>
       )}
+
+      {/* Narrator - Top position on pipe */}
+      <Narrator 
+        position="top" 
+        dialogue="Listen up, noob! 👑 Think you got what it takes to join GCSRM? Prove it! This ain't a playground - only legends survive here!"
+        upDialogue="Back already? 😏 Can't handle the heat? This is just the beginning, weakling! 🔥"
+        hoverDialogues={[
+          "What you want, peasant? 😤 I'm busy ruling this kingdom! Speak fast or GET LOST! 👑💀",
+          "STILL bothering me? 🙄 You're more annoying than a glitched NPC! Either register or SCRAM! ⚡👑"
+        ]}
+      />
     </div>
   );
 };

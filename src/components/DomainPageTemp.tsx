@@ -12,11 +12,8 @@ const DomainPage = () => {
       <Narrator 
         position="middle" 
         dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
-        upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
-        hoverDialogues={[
-          "What you want now? 😒 Stop hovering like a creepy stalker and PICK A DOMAIN! 👑💥",
-          "AGAIN?! 😡 You're testing my royal patience! Make your choice or face my wrath, mortal! ⚡👑"
-        ]}
+        upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy!"
+        downDialogue="Finally ready for the real test? Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
       />
       
       {/* Floating Clouds */}
@@ -156,21 +153,16 @@ const DomainPage = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Hill - Left Side (Forced to Screen Edge) */}
-      <div className="absolute bottom-16 w-96 h-56 z-10" style={{ left: '-115px' }}>
-        <Image src="/hill_sm.png" alt="Hill" fill className="object-contain" />
-      </div>
-
-      {/* Mario Pipe - Right Side */}
-      <div className="absolute bottom-16 right-0 w-28 h-40 z-10">
-        <Image src="/pipe_basic.png" alt="Pipe" width={203} height={305} className="object-contain h-full w-auto" />
-      </div>
-
-      {/* Pipe Top - Right Side */}
-      <div className="absolute bottom-56 right-0 w-32 h-16 z-20">
-        <Image src="/pipe_top.png" alt="Pipe Top" width={232} height={116} className="object-contain h-full w-auto" />
+        {/* Instructions */}
+        <div className="bg-yellow-300 border-4 border-black rounded-lg px-6 py-3 mx-auto max-w-2xl shadow-xl">
+          <p className="text-black font-bold text-lg" style={{ fontFamily: 'Arial Black, sans-serif' }}>
+            🎯 CHOOSE YOUR QUEST! 🎯
+          </p>
+          <p className="text-black font-medium text-sm mt-1">
+            Click on any domain card to begin your registration adventure!
+          </p>
+        </div>
       </div>
 
       {/* Bottom Brick Ground */}

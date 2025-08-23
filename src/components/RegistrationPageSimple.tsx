@@ -121,6 +121,20 @@ const RegistrationPage = () => {
   return (
     <div id="registration-section" className="min-h-screen relative overflow-hidden flex items-center justify-center py-8" style={{ backgroundColor: '#33a1fd' }}>
       
+      {/* Custom CSS for better placeholder visibility */}
+      <style jsx>{`
+        input::placeholder {
+          color: #374151 !important;
+          opacity: 1 !important;
+        }
+        select {
+          color: #374151;
+        }
+        select option {
+          color: #374151;
+        }
+      `}</style>
+      
       {/* Floating Clouds */}
       <div className="absolute top-8 left-8 w-32 h-20 opacity-80 animate-float">
         <Image src="/cloud-1.png" alt="Cloud" fill className="object-contain" />
@@ -320,7 +334,12 @@ const RegistrationPage = () => {
       {/* Narrator - Bottom position on ground */}
       <Narrator 
         position="bottom" 
-        dialogue="Almost there, champion! 🎯 Fill out this form and you'll officially join our legendary crew! Your adventure awaits! 🌟" 
+        dialogue="Final boss fight! 💀 Fill this form perfectly or GET REKT! One wrong move and you're OUT! No mercy for weaklings here! 🔥👑"
+        upDialogue="Chickening out now? 😈 I KNEW you weren't champion material! Pathetic little coward! 💀👑"
+        hoverDialogues={[
+          "What you want, slowpoke? 🙄 Stop it and FILL THE FORM! Time is ticking, loser! ⏰",
+          "SERIOUSLY?! 😤 You're slower than a dead turtle! JUST REGISTER ALREADY or get out of my sight! 👑⚡"
+        ]}
       />
 
       {/* Bottom Brick Ground */}
