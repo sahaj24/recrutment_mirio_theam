@@ -2,10 +2,17 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Narrator from './Narrator';
 
 const DomainPage = () => {
   return (
     <div id="domains-section" className="h-screen relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
+      
+      {/* Narrator - Middle position */}
+      <Narrator 
+        position="middle" 
+        dialogue="Great choice, hero! 🏰 Pick your domain wisely - each path leads to amazing adventures! Choose the one that calls to your heart! 💫" 
+      />
       
       {/* Floating Clouds */}
       <div className="absolute top-8 left-8 w-32 h-20 opacity-90 animate-float">

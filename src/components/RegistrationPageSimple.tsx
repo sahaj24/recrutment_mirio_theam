@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Narrator from './Narrator';
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -316,18 +317,11 @@ const RegistrationPage = () => {
 
       </div>
 
-      {/* Bottom Decorative Elements - Positioned to not interfere with form */}
-      <div className="absolute bottom-0 left-0 w-24 h-12 z-10">
-        <Image src="/pipe_basic.png" alt="Pipe" width={203} height={305} className="object-contain h-full w-auto" />
-      </div>
-      
-      <div className="absolute bottom-12 left-0 w-28 h-14 z-20">
-        <Image src="/pipe_top.png" alt="Pipe Top" width={232} height={116} className="object-contain h-full w-auto" />
-      </div>
-
-      <div className="absolute bottom-0 right-0 w-48 h-24 z-10">
-        <Image src="/hill_sm.png" alt="Hill" fill className="object-contain" />
-      </div>
+      {/* Narrator - Bottom position on ground */}
+      <Narrator 
+        position="bottom" 
+        dialogue="Almost there, champion! 🎯 Fill out this form and you'll officially join our legendary crew! Your adventure awaits! 🌟" 
+      />
 
       {/* Bottom Brick Ground */}
       <div 
