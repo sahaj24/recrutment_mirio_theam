@@ -6,6 +6,11 @@ import Narrator from './Narrator';
 
 const HeroSection = () => {
   const [showFallingBoss, setShowFallingBoss] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 hours in seconds
+  const [isTimerExpired, setIsTimerExpired] = useState(false);
+
+  const totalTime = 24 * 60 * 60; // 24 hours in seconds
+  const progress = ((totalTime - timeLeft) / totalTime) * 100;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +27,34 @@ const HeroSection = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Timer countdown effect
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      setIsTimerExpired(true);
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          setIsTimerExpired(true);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  // Format time display
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
 
   return (
     <div id="hero-section" className="h-screen relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
@@ -112,21 +145,41 @@ const HeroSection = () => {
           />
         </button>
 
-        {/* Direct Registration Button */}
-        <button 
-          onClick={() => {
-            const registrationSection = document.getElementById('registration-section');
-            registrationSection?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className="group relative inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 rounded-full shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300 overflow-hidden mb-12"
-        >
-          <span className="absolute inset-0 bg-white opacity-20 blur-md group-hover:opacity-30 transition-opacity"></span>
-          <span className="relative flex items-center space-x-2">
-            <span className="text-2xl">🚀</span>
-            <span>REGISTER NOW</span>
-            <span className="text-2xl">🚀</span>
-          </span>
-        </button>
+        {/* Direct Registration Button with Timer */}
+        <div className="relative mb-12">
+          <button 
+            onClick={() => {
+              if (!isTimerExpired) {
+                const registrationSection = document.getElementById('registration-section');
+                registrationSection?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            disabled={isTimerExpired}
+            className={`relative overflow-hidden font-bold py-4 px-8 text-xl rounded border-4 border-black shadow-2xl transform transition-all duration-300 ${
+              isTimerExpired 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 hover:scale-105'
+            }`}
+            style={{ fontFamily: 'Arial Black, sans-serif' }}
+          >
+            {/* Progress bar */}
+            <div 
+              className="absolute top-0 left-0 h-1 bg-red-500 transition-all duration-1000"
+              style={{ width: `${progress}%` }}
+            ></div>
+            
+            <span className={`flex items-center space-x-2 ${isTimerExpired ? 'text-gray-600' : 'text-black'}`}>
+              <span className="text-2xl">{isTimerExpired ? '⏰' : '🚀'}</span>
+              <span className="flex flex-col items-center">
+                <span>{isTimerExpired ? 'REGISTRATION CLOSED!' : 'REGISTER NOW!'}</span>
+                <span className="text-sm font-normal">
+                  {isTimerExpired ? 'Time Up!' : `⏰ ${formatTime(timeLeft)}`}
+                </span>
+              </span>
+              <span className="text-2xl">{isTimerExpired ? '⏰' : '🚀'}</span>
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Palm Tree - Left Side (Forced to Screen Edge) */}

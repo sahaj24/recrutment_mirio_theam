@@ -149,9 +149,6 @@ const RegistrationPage = () => {
         <div className="absolute top-1/4 left-10 w-10 h-10 animate-pulse">
           <Image src="/block_question.png" alt="Question Block" fill className="object-contain" />
         </div>
-        <div className="absolute top-3/4 right-20 w-10 h-10 animate-pulse">
-          <Image src="/block_question-2.png" alt="Question Block" fill className="object-contain" />
-        </div>
       </div>
 
       {/* Main Content */}

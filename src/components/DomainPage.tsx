@@ -55,24 +55,24 @@ const DomainPage = () => {
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <div className="w-64 h-72 relative bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg border-4 border-black shadow-2xl">
+            <div className="w-80 h-96 relative bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg border-4 border-black shadow-2xl">
               <div className="absolute inset-2 bg-gradient-to-b from-blue-300 to-blue-500 rounded border-2 border-blue-700">
-                <div className="p-4 text-center h-full flex flex-col justify-between">
+                <div className="p-6 text-center h-full flex flex-col justify-between">
                   <div>
-                    <div className="mb-3">
+                    <div className="mb-4">
                       <Image 
                         src="/technical.png"
                         alt="TECHNICAL" 
-                        width={150}
-                        height={40}
+                        width={180}
+                        height={48}
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-base text-black font-semibold">
+                    <p className="text-lg text-black font-semibold">
                       Code • Debug • Build
                     </p>
                   </div>
-                  <div className="text-sm text-black font-medium">
+                  <div className="text-base text-black font-medium">
                     Web Development<br/>
                     App Development<br/>
                     Programming
@@ -92,24 +92,24 @@ const DomainPage = () => {
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <div className="w-64 h-72 relative bg-gradient-to-b from-green-400 to-green-600 rounded-lg border-4 border-black shadow-2xl">
+            <div className="w-80 h-96 relative bg-gradient-to-b from-green-400 to-green-600 rounded-lg border-4 border-black shadow-2xl">
               <div className="absolute inset-2 bg-gradient-to-b from-green-300 to-green-500 rounded border-2 border-green-700">
-                <div className="p-4 text-center h-full flex flex-col justify-between">
+                <div className="p-6 text-center h-full flex flex-col justify-between">
                   <div>
-                    <div className="mb-3">
+                    <div className="mb-4">
                       <Image 
                         src="/creative.png"
                         alt="CREATIVE" 
-                        width={150}
-                        height={40}
+                        width={180}
+                        height={48}
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-base text-black font-semibold">
+                    <p className="text-lg text-black font-semibold">
                       Design • Create • Inspire
                     </p>
                   </div>
-                  <div className="text-sm text-black font-medium">
+                  <div className="text-base text-black font-medium">
                     Graphic Design<br/>
                     UI/UX Design<br/>
                     Content Creation
@@ -129,24 +129,24 @@ const DomainPage = () => {
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <div className="w-64 h-72 relative bg-gradient-to-b from-red-400 to-red-600 rounded-lg border-4 border-black shadow-2xl">
+            <div className="w-80 h-96 relative bg-gradient-to-b from-red-400 to-red-600 rounded-lg border-4 border-black shadow-2xl">
               <div className="absolute inset-2 bg-gradient-to-b from-red-300 to-red-500 rounded border-2 border-red-700">
-                <div className="p-4 text-center h-full flex flex-col justify-between">
+                <div className="p-6 text-center h-full flex flex-col justify-between">
                   <div>
-                    <div className="mb-3">
+                    <div className="mb-4">
                       <Image 
                         src="/corporate.png"
                         alt="CORPORATE" 
-                        width={150}
-                        height={40}
+                        width={180}
+                        height={48}
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-base text-black font-semibold">
+                    <p className="text-lg text-black font-semibold">
                       Lead • Manage • Excel
                     </p>
                   </div>
-                  <div className="text-sm text-black font-medium">
+                  <div className="text-base text-black font-medium">
                     Event Management<br/>
                     Business Strategy<br/>
                     Leadership
