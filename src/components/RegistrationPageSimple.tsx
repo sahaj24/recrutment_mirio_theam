@@ -167,7 +167,7 @@ const RegistrationPage = () => {
       {/* Main Content - Fully responsive */}
       <div className="text-center z-20 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl px-2 sm:px-4 -mt-8 sm:-mt-12 md:-mt-16">
         
-        {/* Registration Title - Responsive sizing */}
+        {/* Registration Title - Responsive  sizing */}
         <div className="mb-2 sm:mb-3 md:mb-4">
           <div className="relative w-full h-16 sm:h-20 md:h-24 lg:h-32 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto">
             <Image 
