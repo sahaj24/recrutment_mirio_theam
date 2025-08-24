@@ -279,9 +279,9 @@ const HeroSection = () => {
           <button className="group relative inline-flex items-center justify-center px-12 py-6 text-2xl font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 rounded-full shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300 overflow-hidden">
             <span className="absolute inset-0 bg-white opacity-20 blur-md group-hover:opacity-30 transition-opacity"></span>
             <span className="relative flex items-center space-x-3">
-              <span className="text-3xl">🚀</span>
+              <span className="text-3xl"></span>
               <span>START YOUR ADVENTURE</span>
-              <span className="text-3xl">🚀</span>
+              <span className="text-3xl"></span>
             </span>
           </button>
           

@@ -6,12 +6,20 @@ import Image from 'next/image';
 
 const HeroSection = () => {
   const [showFallingBoss, setShowFallingBoss] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 hours in seconds
-  const [isTimerExpired, setIsTimerExpired] = useState(false);
+  // Day-based timer: opens 29 Aug 2025, closes 30 Aug 2025 (end of day)
+  const [now, setNow] = useState(() => new Date());
+  const [isWindowOpen, setIsWindowOpen] = useState(false);
+  const [isWindowClosed, setIsWindowClosed] = useState(false);
   const [showPalmTree, setShowPalmTree] = useState(true);
 
-  const totalTime = 24 * 60 * 60; // 24 hours in seconds
-  const progress = ((totalTime - timeLeft) / totalTime) * 100;
+  // Define start and end (local time) — months are 0-indexed: 7 = August
+  const startDate = new Date(2025, 7, 29, 0, 0, 0);
+  const endDate = new Date(2025, 7, 30, 23, 59, 59);
+
+  // Progress between start and end (0-100)
+  const totalSecondsWindow = Math.max(1, Math.floor((endDate.getTime() - startDate.getTime()) / 1000));
+  const elapsedSeconds = Math.max(0, Math.floor((now.getTime() - startDate.getTime()) / 1000));
+  const progress = Math.min(100, Math.max(0, (elapsedSeconds / totalSecondsWindow) * 100));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,33 +45,36 @@ const HeroSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Timer countdown effect
+  // Update current time every second and compute window state
   useEffect(() => {
-    if (timeLeft <= 0) {
-      setIsTimerExpired(true);
-      return;
-    }
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
 
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => {
-        if (prevTime <= 1) {
-          setIsTimerExpired(true);
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft]);
+  useEffect(() => {
+    setIsWindowOpen(now.getTime() >= startDate.getTime() && now.getTime() <= endDate.getTime());
+    setIsWindowClosed(now.getTime() > endDate.getTime());
+  }, [now]);
 
   // Format time display
-  const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
+  // Format seconds into D:HH:MM:SS
+  const formatDayTime = (seconds: number) => {
+    const days = Math.floor(seconds / 86400);
+    const hours = Math.floor((seconds % 86400) / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    const secs = Math.floor(seconds % 60);
+    return `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
+
+  const secondsUntil = (target: Date) => Math.max(0, Math.floor((target.getTime() - now.getTime()) / 1000));
+
+  // Timer state helpers (used by the register button)
+  const isTimerExpired = now.getTime() > endDate.getTime();
+  const isTimerActive = now.getTime() >= startDate.getTime() && now.getTime() <= endDate.getTime();
+  // If active, show time until end; if before start, show time until start
+  const timeLeft = isTimerActive ? secondsUntil(endDate) : Math.max(0, secondsUntil(startDate));
+  // alias the formatting function expected by JSX
+  const formatTime = formatDayTime;
 
   return (
     <div id="hero-section" className="h-screen relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
@@ -178,14 +189,14 @@ const HeroSection = () => {
             ></div>
             
             <span className={`flex items-center space-x-2 ${isTimerExpired ? 'text-gray-600' : 'text-black'}`}>
-              <span className="text-2xl">{isTimerExpired ? '⏰' : '🚀'}</span>
+              <span className="text-2xl">{isTimerExpired ? '⏰' : ''}</span>
               <span className="flex flex-col items-center">
                 <span>{isTimerExpired ? 'REGISTRATION CLOSED!' : 'REGISTER NOW!'}</span>
                 <span className="text-sm font-normal">
                   {isTimerExpired ? 'Time Up!' : `⏰ ${formatTime(timeLeft)}`}
                 </span>
               </span>
-              <span className="text-2xl">{isTimerExpired ? '⏰' : '🚀'}</span>
+              <span className="text-2xl">{isTimerExpired ? '⏰' : ''}</span>
             </span>
           </button>
         </div>

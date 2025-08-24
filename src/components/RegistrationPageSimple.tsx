@@ -195,7 +195,7 @@ const RegistrationPage = () => {
                   onChange={handleChange}
                   required
                   className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
-                    errors.name ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                      (formData.name ? 'text-black ' : 'text-white ') + (errors.name ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400')
                   }`}
                   placeholder="Enter your full name"
                 />
@@ -213,7 +213,7 @@ const RegistrationPage = () => {
                   onChange={handleChange}
                   required
                   className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
-                    errors.phone ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                      (formData.phone ? 'text-black ' : 'text-white ') + (errors.phone ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400')
                   }`}
                   placeholder="Enter your phone number"
                 />
@@ -231,7 +231,7 @@ const RegistrationPage = () => {
                   onChange={handleChange}
                   required
                   className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
-                    errors.email ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                      (formData.email ? 'text-black ' : 'text-white ') + (errors.email ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400')
                   }`}
                   placeholder="Enter your email address"
                 />
@@ -267,7 +267,7 @@ const RegistrationPage = () => {
                   onChange={handleChange}
                   required
                   className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
-                    errors.registrationNumber ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                      (formData.registrationNumber ? 'text-black ' : 'text-white ') + (errors.registrationNumber ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400')
                   }`}
                   placeholder="Enter registration number"
                 />
@@ -284,7 +284,7 @@ const RegistrationPage = () => {
                   onChange={handleChange}
                   required
                   className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all bg-white ${
-                    errors.year ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                      (formData.year ? 'text-black ' : 'text-white ') + (errors.year ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400')
                   }`}
                 >
                   <option value="">Select your year</option>
@@ -306,7 +306,7 @@ const RegistrationPage = () => {
                   onChange={handleChange}
                   required
                   className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all bg-white ${
-                    errors.domain ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                      (formData.domain ? 'text-black ' : 'text-white ') + (errors.domain ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400')
                   }`}
                 >
                   <option value="">Select your domain</option>

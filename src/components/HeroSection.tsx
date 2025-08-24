@@ -1,10 +1,44 @@
-'use client';
+ 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 const HeroSection = () => {
   const [coins, setCoins] = useState(0);
+  const router = useRouter();
+
+  // Time-based registration window (live second-updated clock for timer)
+  const [now, setNow] = useState<Date>(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000); // update every second for live timer
+    return () => clearInterval(timer);
+  }, []);
+
+  // Local dates: active from 2025-08-29 00:00 local to 2025-08-30 23:59:59 local
+  const regStart = new Date(2025, 7, 29, 0, 0, 0); // monthIndex 7 = August
+  const regEnd = new Date(2025, 7, 30, 23, 59, 59);
+  const isBeforeStart = now < regStart;
+  const isDuring = now >= regStart && now <= regEnd;
+  const isAfterEnd = now > regEnd;
+
+  // compute remaining time for display (ms -> D:HH:MM:SS)
+  const getTimeLeftString = (targetDate: Date) => {
+    const diff = Math.max(0, targetDate.getTime() - now.getTime());
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    return `${days}d ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  };
+
+  const countdownText = isBeforeStart
+    ? `Opens in ${getTimeLeftString(regStart)}`
+    : isDuring
+      ? `Closes in ${getTimeLeftString(regEnd)}`
+      : 'Registration closed';
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -293,17 +327,32 @@ const HeroSection = () => {
 
         {/* Call to Action */}
         <div className="text-center mb-16">
-          <button className="group relative inline-flex items-center justify-center px-12 py-6 text-2xl font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 rounded-full shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300 overflow-hidden">
-            <span className="absolute inset-0 bg-white opacity-20 blur-md group-hover:opacity-30 transition-opacity"></span>
+          <button
+            onClick={() => { if (isDuring) router.push('/register'); }}
+            disabled={!isDuring}
+            aria-disabled={!isDuring}
+            className={
+              isDuring
+                ? 'group relative inline-flex items-center justify-center px-12 py-6 text-2xl font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 rounded-full shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300 overflow-hidden'
+                : 'group relative inline-flex items-center justify-center px-12 py-6 text-2xl font-bold text-black bg-gray-300 rounded-full shadow-none cursor-not-allowed transition-all duration-300 opacity-95'
+            }
+          >
+            {isDuring && <span className="absolute inset-0 bg-white opacity-20 blur-md group-hover:opacity-30 transition-opacity"></span>}
             <span className="relative flex items-center space-x-3">
-              <span className="text-3xl">🚀</span>
-              <span>START YOUR ADVENTURE</span>
-              <span className="text-3xl">🚀</span>
+              <span className="text-3xl"></span>
+              <span>
+                {isBeforeStart && 'Opens 29 Aug 2025'}
+                {isDuring && 'Register — open until 30 Aug 2025 23:59'}
+                {isAfterEnd && 'Registration closed'}
+              </span>
+              <span className="text-3xl"></span>
             </span>
           </button>
-          
-          <div className="mt-6 text-white text-xl">
-            <p>Join <span className="text-yellow-400 font-bold text-2xl">500+</span> students already on their journey!</p>
+
+          <div className={`mt-6 text-xl ${isDuring ? 'text-white' : 'text-gray-700'}`}>
+            <p>
+              Join <span className={isDuring ? 'text-yellow-400 font-bold text-2xl' : 'text-gray-800 font-bold text-2xl'}>500+</span> students already on their journey!
+            </p>
           </div>
         </div>
       </div>
