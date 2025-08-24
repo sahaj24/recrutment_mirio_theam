@@ -64,7 +64,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ playerName, domain, onClose }
 
         {/* Next Steps */}
         <div className="mb-6 text-black">
-          <p className="font-bold mb-2">🚀 WHAT'S NEXT?</p>
+          <p className="font-bold mb-2">🚀 WHAT&apos;S NEXT?</p>
           <ul className="text-sm space-y-1">
             <li>📧 Check your email for next steps</li>
             <li>📱 Join our WhatsApp group</li>

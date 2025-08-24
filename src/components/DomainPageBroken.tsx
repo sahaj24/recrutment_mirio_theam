@@ -1,20 +1,12 @@
-'use clien      {/* Narrator - Middle position */}
-      <Narrator 
-        position="middle" 
-        dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
-        upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
-        downDialogue="Finally ready for the real test? 💀 Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
-      />
-      
-      {/* Floating Clouds */}React from 'react';
+import React from 'react';
 import Image from 'next/image';
-import Narrator from './Narrator';
 
 const DomainPage = () => {
   return (
     <div id="domains-section" className="h-screen relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
-      
-      {/* Narrator - Middle position - Hidden on mobile */}
+
+      {/* Narrator was intentionally removed/commented out for mobile and per UX request */}
+      {/*
       <div className="hidden md:block">
         <Narrator 
           position="middle" 
@@ -23,7 +15,8 @@ const DomainPage = () => {
           downDialogue="Finally ready for the real test? 💀 Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
         />
       </div>
-      
+      */}
+
       {/* Floating Clouds */}
       <div className="absolute top-8 left-8 w-32 h-20 opacity-90 animate-float">
         <Image src="/cloud-1.png" alt="Cloud" fill className="object-contain" />
@@ -34,7 +27,6 @@ const DomainPage = () => {
 
       {/* Main Content */}
       <div className="text-center z-20 px-4 -mt-20">
-        
         {/* Domain Title Image */}
         <div className="mb-8">
           <Image 
@@ -49,13 +41,11 @@ const DomainPage = () => {
 
         {/* Domain Cards */}
         <div className="flex flex-col md:flex-row gap-6 justify-center items-center max-w-5xl mx-auto">
-          
           {/* Technical Card */}
           <div 
             className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"
             onClick={() => {
               const registrationSection = document.getElementById('registration-section');
-              // Store selected domain in sessionStorage for pre-filling the form
               sessionStorage.setItem('selectedDomain', 'Technical');
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
@@ -73,9 +63,7 @@ const DomainPage = () => {
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-base text-black font-semibold">
-                      Code • Build • Innovate
-                    </p>
+                    <p className="text-base text-black font-semibold">Code • Build • Innovate</p>
                   </div>
                   <div className="text-sm text-black font-medium">
                     Software Development<br/>
@@ -92,7 +80,6 @@ const DomainPage = () => {
             className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"
             onClick={() => {
               const registrationSection = document.getElementById('registration-section');
-              // Store selected domain in sessionStorage for pre-filling the form
               sessionStorage.setItem('selectedDomain', 'Creative');
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
@@ -110,9 +97,7 @@ const DomainPage = () => {
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-base text-black font-semibold">
-                      Design • Create • Inspire
-                    </p>
+                    <p className="text-base text-black font-semibold">Design • Create • Inspire</p>
                   </div>
                   <div className="text-sm text-black font-medium">
                     Graphic Design<br/>
@@ -129,7 +114,6 @@ const DomainPage = () => {
             className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"
             onClick={() => {
               const registrationSection = document.getElementById('registration-section');
-              // Store selected domain in sessionStorage for pre-filling the form
               sessionStorage.setItem('selectedDomain', 'Corporate');
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
@@ -147,9 +131,7 @@ const DomainPage = () => {
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-base text-black font-semibold">
-                      Lead • Manage • Excel
-                    </p>
+                    <p className="text-base text-black font-semibold">Lead • Manage • Excel</p>
                   </div>
                   <div className="text-sm text-black font-medium">
                     Business Strategy<br/>

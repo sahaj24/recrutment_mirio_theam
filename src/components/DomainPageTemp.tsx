@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Narrator from './Narrator';
+// Narrator removed per user request
 
 const DomainPage = () => {
   return (
@@ -37,14 +37,16 @@ const DomainPage = () => {
       </div>
 
       {/* Narrator - Middle position - Hidden on mobile */}
+      {/* Narrator removed per user request
       <div className="hidden md:block">
-        <Narrator 
-          position="middle" 
-          dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
-          upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy!"
-          downDialogue="Finally ready for the real test? Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
+        <Narrator
+          position="middle"
+          dialogue="You've arrived  how wonderful. Please choose the path that lights your spirit: Technical, Creative, or Corporate."
+          upDialogue="A gentle reminder: patience and curiosity make great companions on any journey."
+          downDialogue="When you're ready, step forward with grace and courage."
         />
       </div>
+      */}
 
       {/* Main Content */}
       <div className="text-center z-20 px-4 -mt-20">

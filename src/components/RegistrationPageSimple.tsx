@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Narrator from './Narrator';
+// Narrator removed per user request
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -318,6 +318,7 @@ const RegistrationPage = () => {
       </div>
 
       {/* Narrator - Hidden on mobile and tablets */}
+      {/* Narrator removed for mobile/UX by user request
       <div className="hidden lg:block">
         <Narrator 
           position="bottom" 
@@ -329,6 +330,7 @@ const RegistrationPage = () => {
           ]}
         />
       </div>
+      */}
 
       {/* Bottom Brick Ground - Responsive sizing */}
       <div 

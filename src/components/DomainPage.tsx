@@ -2,24 +2,25 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Narrator from './Narrator';
+// Narrator removed per user request
 
 const DomainPage = () => {
   return (
     <div id="domains-section" className="min-h-screen py-16 sm:py-20 md:py-24 relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
       
-      {/* Narrator - Top position (on pipe) - Hidden on mobile */}
+      {/* Narrator removed per user request
       <div className="hidden md:block">
-        <Narrator 
-          position="top" 
-          dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
-          upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
-          hoverDialogues={[
-            "What you want now? 😒 Stop hovering like a creepy stalker and PICK A DOMAIN! 👑💥",
-            "AGAIN?! 😡 You're testing my royal patience! Make your choice or face my wrath, mortal! ⚡👑"
-          ]}
-        />
+            <Narrator
+              position="middle"
+              dialogue="Welcome, dear friend — you've come so far. Kindly choose the path that calls to your heart: Technical, Creative, or Corporate."
+              upDialogue="Take a moment to breathe; thoughtful choices shine the brightest."
+              hoverDialogues={[
+                "Hello, lovely one — your talents are treasured here.",
+                "Choose with kindness and confidence; I believe in you."
+              ]}
+            />
       </div>
+      */}
       
       {/* Floating Clouds */}
       <div className="absolute top-4 sm:top-6 md:top-8 left-4 sm:left-6 md:left-8 w-24 sm:w-28 md:w-32 h-16 sm:h-18 md:h-20 opacity-90 animate-float">
@@ -43,10 +44,21 @@ const DomainPage = () => {
             priority
           />
         </div>
+                    {/* Narrator removed per user request
+                    <Narrator
+                      position="middle"
+                      dialogue="Welcome, dear friend — you've come so far. Kindly choose the path that calls to your heart: Technical, Creative, or Corporate."
+                      upDialogue="Take a moment to breathe; thoughtful choices shine the brightest."
+                      hoverDialogues={[
+                        "Hello, lovely one — your talents are treasured here.",
+                        "Choose with kindness and confidence; I believe in you."
+                      ]}
+                    />
+                    */}
 
-        {/* Domain Cards Container - Improved mobile responsiveness with flexible spacing */}
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 md:mb-12 pb-4 sm:pb-6 md:pb-8">
-          
+          {/* Domain Cards Container - restored after commenting narrator */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 md:mb-12 pb-4 sm:pb-6 md:pb-8">
+
           {/* Technical Card */}
           <div 
             className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"

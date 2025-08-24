@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Narrator from './Narrator';
+// Narrator removed per user request
 
 const HeroSection = () => {
   const [showFallingBoss, setShowFallingBoss] = useState(false);
@@ -251,7 +251,7 @@ const HeroSection = () => {
         </div>
       )}
 
-      {/* Narrator - Top position on pipe - Hidden on mobile */}
+      {/* Narrator removed per user request
       <div className="hidden md:block">
         <Narrator 
           position="top" 
@@ -263,6 +263,7 @@ const HeroSection = () => {
           ]}
         />
       </div>
+      */}
     </div>
   );
 };
