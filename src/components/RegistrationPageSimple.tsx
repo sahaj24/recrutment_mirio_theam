@@ -53,6 +53,8 @@ const RegistrationPage = () => {
 
     if (!formData.registrationNumber.trim()) {
       newErrors.registrationNumber = 'Registration number is required!';
+    } else if (!/^ra.{13}$/i.test(formData.registrationNumber.trim())) {
+      newErrors.registrationNumber = 'Registration number must start with "ra" and be 15 characters long';
     }
 
     if (!formData.year) {
