@@ -130,7 +130,7 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div id="registration-section" className="min-h-screen relative overflow-hidden flex items-center justify-center py-6 sm:py-8 px-4 sm:px-6" style={{ backgroundColor: '#33a1fd' }}>
+    <div id="registration-section" className="min-h-screen relative overflow-hidden flex items-center justify-center py-6 sm:py-8 lg:py-20 px-4 sm:px-6 lg:px-24" style={{ backgroundColor: '#33a1fd' }}>
       
       {/* Simplified CSS */}
       <style jsx>{`
@@ -290,8 +290,7 @@ const RegistrationPage = () => {
                   <option value="">Select your year</option>
                   <option value="1st Year">1st Year</option>
                   <option value="2nd Year">2nd Year</option>
-                  <option value="3rd Year">3rd Year</option>
-                  <option value="4th Year">4th Year</option>
+                  
                   
                 </select>
                 {errors.year && (
@@ -311,9 +310,9 @@ const RegistrationPage = () => {
                   }`}
                 >
                   <option value="">Select your domain</option>
-                  <option value="Technical">Technical - Code, Build, Innovate</option>
-                  <option value="Creative">Creative - Design, Create, Inspire</option>
-                  <option value="Corporate">Corporate - Lead, Manage, Excel</option>
+                  <option value="Technical">Technical</option>
+                  <option value="Creative">Creative</option>
+                  <option value="Corporate">Corporate</option>
                 </select>
                 {errors.domain && (
                   <p className="text-red-600 text-xs font-bold mt-1">❌ {errors.domain}</p>
