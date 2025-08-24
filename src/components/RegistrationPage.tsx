@@ -10,6 +10,7 @@ const RegistrationPage = () => {
     phone: '',
     domain: '',
     registrationNumber: '',
+  degree: '',
     year: '',
     email: ''
   });
@@ -143,6 +144,21 @@ const RegistrationPage = () => {
                   <option value="3">3rd Year</option>
                   <option value="4">4th Year</option>
                 </select>
+              </div>
+
+              {/* Degree (include branch) Field */}
+              <div>
+                <label className="block text-base font-bold text-black mb-1" style={{ fontFamily: 'Arial Black, sans-serif' }}>
+                  DEGREE (include branch)
+                </label>
+                <input
+                  type="text"
+                  name="degree"
+                  value={formData.degree}
+                  onChange={handleChange}
+                  className="w-full px-2 py-1.5 text-sm border-2 border-black rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  placeholder="Degree (e.g. B.Tech - CSE)"
+                />
               </div>
 
               {/* Email Field */}

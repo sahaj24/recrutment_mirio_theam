@@ -10,7 +10,9 @@ const RegistrationPage = () => {
     phone: '',
     domain: '',
     registrationNumber: '',
-    year: '',
+  year: '',
+  degree: '',
+  subdomain: '',
     email: ''
   });
 
@@ -45,8 +47,8 @@ const RegistrationPage = () => {
 
     if (!formData.email.trim()) {
       newErrors.email = 'Email address is required!';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address!';
+    } else if (!/^[A-Za-z0-9._%+-]+@srmist\.edu\.in$/i.test(formData.email.trim())) {
+      newErrors.email = 'Please use your @srmist.edu.in email address';
     }
 
     if (!formData.registrationNumber.trim()) {
@@ -59,6 +61,11 @@ const RegistrationPage = () => {
 
     if (!formData.domain) {
       newErrors.domain = 'Please choose your domain!';
+    }
+
+    // Require subdomain/specialization for Technical and Corporate selections
+    if ((formData.domain === 'Technical' || formData.domain === 'Corporate') && !formData.subdomain) {
+      newErrors.subdomain = 'Please select an option for your domain';
     }
 
     setErrors(newErrors);
@@ -106,9 +113,11 @@ const RegistrationPage = () => {
         name: '',
         phone: '',
         domain: '',
-        registrationNumber: '',
-        year: '',
-        email: ''
+  registrationNumber: '',
+  year: '',
+  degree: '',
+  subdomain: '',
+  email: ''
       });
       
       setIsSubmitting(false);
@@ -230,6 +239,24 @@ const RegistrationPage = () => {
               </div>
 
               {/* Registration Number Field */}
+              {/* Degree (include branch) Field */}
+              <div>
+                <input
+                  type="text"
+                  name="degree"
+                  value={formData.degree}
+                  onChange={handleChange}
+                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
+                    errors.degree ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                  }`}
+                  placeholder="Degree (e.g. B.Tech - CSE)"
+                />
+                {errors.degree && (
+                  <p className="text-red-600 text-xs font-bold mt-1">❌ {errors.degree}</p>
+                )}
+              </div>
+
+              {/* Registration Number Field */}
               <div>
                 <input
                   type="text"
@@ -290,6 +317,40 @@ const RegistrationPage = () => {
                   <p className="text-red-600 text-xs font-bold mt-1">❌ {errors.domain}</p>
                 )}
               </div>
+
+              {/* Conditional Subdomain/Specialization */}
+              {(formData.domain === 'Technical' || formData.domain === 'Corporate') && (
+                <div>
+                  <label className="sr-only">Subdomain</label>
+                  <select
+                    name="subdomain"
+                    value={formData.subdomain}
+                    onChange={handleChange}
+                    className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all bg-white ${
+                      errors.subdomain ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
+                    }`}
+                  >
+                    <option value="">Select an option</option>
+                    {formData.domain === 'Technical' && (
+                      <>
+                        <option value="Web Development">Web Development</option>
+                        <option value="AI/ML">AI/ML</option>
+                      </>
+                    )}
+                    {formData.domain === 'Corporate' && (
+                      <>
+                        <option value="Operations">Operations</option>
+                        <option value="Public Relations">Public Relations</option>
+                        <option value="Documentation">Documentation</option>
+                        <option value="Sponsorship">Sponsorship</option>
+                      </>
+                    )}
+                  </select>
+                  {errors.subdomain && (
+                    <p className="text-red-600 text-xs font-bold mt-1">❌ {errors.subdomain}</p>
+                  )}
+                </div>
+              )}
 
               {/* Submit Button - Touch-friendly sizing */}
               <div className="pt-2">
