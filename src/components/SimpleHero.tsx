@@ -182,9 +182,11 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Palm Tree - Left Side (Forced to Screen Edge) - Responsive sizing */}
-      <div className="absolute bottom-16 w-32 sm:w-48 md:w-64 h-65 sm:h-98 md:h-130 z-10" style={{ left: '-30px' }}>
-        <Image src="/tree_palm.png" alt="Palm Tree" fill className="object-contain" />
+      {/* Palm Tree - Left Side - Forced to stick to left edge */}
+      <div className="fixed bottom-16 left-0 w-32 sm:w-48 md:w-64 h-65 sm:h-98 md:h-130 z-10" style={{ margin: 0, padding: 0 }}>
+        <div className="relative w-full h-full">
+          <Image src="/tree_palm.png" alt="Palm Tree" fill className="object-contain object-left" />
+        </div>
       </div>
 
       {/* Mario Pipe - Right Side */}
