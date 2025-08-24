@@ -8,6 +8,7 @@ const HeroSection = () => {
   const [showFallingBoss, setShowFallingBoss] = useState(false);
   const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 hours in seconds
   const [isTimerExpired, setIsTimerExpired] = useState(false);
+  const [showPalmTree, setShowPalmTree] = useState(true);
 
   const totalTime = 24 * 60 * 60; // 24 hours in seconds
   const progress = ((totalTime - timeLeft) / totalTime) * 100;
@@ -15,12 +16,20 @@ const HeroSection = () => {
   useEffect(() => {
     const handleScroll = () => {
       const domainsSection = document.getElementById('domains-section');
+      const heroSection = document.getElementById('hero-section');
+      
       if (domainsSection) {
-        const rect = domainsSection.getBoundingClientRect();
+        const domainRect = domainsSection.getBoundingClientRect();
         // Trigger animation when domain section comes into view
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (domainRect.top < window.innerHeight && domainRect.bottom > 0) {
           setShowFallingBoss(true);
         }
+      }
+      
+      // Hide palm tree when scrolled past hero section
+      if (heroSection) {
+        const heroRect = heroSection.getBoundingClientRect();
+        setShowPalmTree(heroRect.bottom > 0);
       }
     };
 
@@ -182,12 +191,15 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Palm Tree - Left Side - Forced to stick to left edge */}
-      <div className="fixed bottom-16 left-0 w-32 sm:w-48 md:w-64 h-65 sm:h-98 md:h-130 z-10" style={{ margin: 0, padding: 0 }}>
-        <div className="relative w-full h-full">
-          <Image src="/tree_palm.png" alt="Palm Tree" fill className="object-contain object-left" />
+      {/* Palm Tree - Left Side - Only visible on first page */}
+      {showPalmTree && (
+        <div className="absolute bottom-16 left-0 w-32 sm:w-48 md:w-64 h-65 sm:h-98 md:h-130 z-10" style={{ margin: 0, padding: 0 }}>
+          <div className="relative w-full h-full">
+            <Image src="/tree_palm.png" alt="Palm Tree" fill className="object-contain object-left" />
+          </div>
         </div>
-      </div>
+      )}
+
 
       {/* Mario Pipe - Right Side */}
       <div className="absolute bottom-16 right-0 w-28 h-40 z-10">
