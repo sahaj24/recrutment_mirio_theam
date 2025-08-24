@@ -6,12 +6,12 @@ import Narrator from './Narrator';
 
 const DomainPage = () => {
   return (
-    <div id="domains-section" className="h-screen relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
+    <div id="domains-section" className="min-h-screen py-16 sm:py-20 md:py-24 relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
       
-      {/* Narrator - Middle position - Hidden on mobile */}
+      {/* Narrator - Top position (on pipe) - Hidden on mobile */}
       <div className="hidden md:block">
         <Narrator 
-          position="middle" 
+          position="top" 
           dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
           upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
           hoverDialogues={[
@@ -22,30 +22,30 @@ const DomainPage = () => {
       </div>
       
       {/* Floating Clouds */}
-      <div className="absolute top-8 left-8 w-32 h-20 opacity-90 animate-float">
+      <div className="absolute top-4 sm:top-6 md:top-8 left-4 sm:left-6 md:left-8 w-24 sm:w-28 md:w-32 h-16 sm:h-18 md:h-20 opacity-90 animate-float">
         <Image src="/cloud-1.png" alt="Cloud" fill className="object-contain" />
       </div>
-      <div className="absolute top-12 right-12 w-36 h-24 opacity-90 animate-float-delayed">
+      <div className="absolute top-8 sm:top-10 md:top-12 right-4 sm:right-8 md:right-12 w-28 sm:w-32 md:w-36 h-18 sm:h-20 md:h-24 opacity-90 animate-float-delayed">
         <Image src="/cloud-2.png" alt="Cloud" fill className="object-contain" />
       </div>
 
       {/* Main Content */}
-      <div className="text-center z-20 px-4 -mt-20">
+      <div className="text-center z-20 px-4 py-8 sm:py-10 md:py-12">
         
         {/* Domain Title Image */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-6 md:mb-8">
           <Image 
             src="/choose-your-path.png"
             alt="CHOOSE YOUR PATH" 
             width={300}
             height={75}
-            className="mx-auto drop-shadow-2xl"
+            className="mx-auto drop-shadow-2xl w-64 sm:w-72 md:w-80 lg:w-auto"
             priority
           />
         </div>
 
-        {/* Domain Cards Container */}
-        <div className="flex flex-wrap justify-center gap-8 mb-8">
+        {/* Domain Cards Container - Improved mobile responsiveness with flexible spacing */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 md:mb-12 pb-4 sm:pb-6 md:pb-8">
           
           {/* Technical Card */}
           <div 
@@ -57,24 +57,25 @@ const DomainPage = () => {
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <div className="w-80 h-96 relative bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg border-4 border-black shadow-2xl">
+            <div className="w-64 sm:w-72 md:w-80 h-80 sm:h-88 md:h-96 relative bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg border-4 border-black shadow-2xl">
               <div className="absolute inset-2 bg-gradient-to-b from-blue-300 to-blue-500 rounded border-2 border-blue-700">
-                <div className="p-6 text-center h-full flex flex-col justify-between">
+                <div className="p-3 sm:p-4 md:p-6 text-center h-full flex flex-col justify-between">
                   <div>
-                    <div className="mb-4">
+                    <div className="mb-2 sm:mb-3 md:mb-4">
                       <Image 
                         src="/technical.png"
                         alt="TECHNICAL" 
-                        width={180}
-                        height={48}
+                        width={140}
+                        height={37}
+                        sizes="(max-width: 640px) 140px, (max-width: 768px) 160px, 180px"
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-lg text-black font-semibold">
+                    <p className="text-base sm:text-lg text-black font-semibold">
                       Code • Debug • Build
                     </p>
                   </div>
-                  <div className="text-base text-black font-medium">
+                  <div className="text-sm sm:text-base text-black font-medium">
                     Web Development<br/>
                     App Development<br/>
                     Programming
@@ -94,24 +95,25 @@ const DomainPage = () => {
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <div className="w-80 h-96 relative bg-gradient-to-b from-green-400 to-green-600 rounded-lg border-4 border-black shadow-2xl">
+            <div className="w-64 sm:w-72 md:w-80 h-80 sm:h-88 md:h-96 relative bg-gradient-to-b from-green-400 to-green-600 rounded-lg border-4 border-black shadow-2xl">
               <div className="absolute inset-2 bg-gradient-to-b from-green-300 to-green-500 rounded border-2 border-green-700">
-                <div className="p-6 text-center h-full flex flex-col justify-between">
+                <div className="p-3 sm:p-4 md:p-6 text-center h-full flex flex-col justify-between">
                   <div>
-                    <div className="mb-4">
+                    <div className="mb-2 sm:mb-3 md:mb-4">
                       <Image 
                         src="/creative.png"
                         alt="CREATIVE" 
-                        width={180}
-                        height={48}
+                        width={140}
+                        height={37}
+                        sizes="(max-width: 640px) 140px, (max-width: 768px) 160px, 180px"
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-lg text-black font-semibold">
+                    <p className="text-base sm:text-lg text-black font-semibold">
                       Design • Create • Inspire
                     </p>
                   </div>
-                  <div className="text-base text-black font-medium">
+                  <div className="text-sm sm:text-base text-black font-medium">
                     Graphic Design<br/>
                     UI/UX Design<br/>
                     Content Creation
@@ -131,24 +133,25 @@ const DomainPage = () => {
               registrationSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <div className="w-80 h-96 relative bg-gradient-to-b from-red-400 to-red-600 rounded-lg border-4 border-black shadow-2xl">
+            <div className="w-64 sm:w-72 md:w-80 h-80 sm:h-88 md:h-96 relative bg-gradient-to-b from-red-400 to-red-600 rounded-lg border-4 border-black shadow-2xl">
               <div className="absolute inset-2 bg-gradient-to-b from-red-300 to-red-500 rounded border-2 border-red-700">
-                <div className="p-6 text-center h-full flex flex-col justify-between">
+                <div className="p-3 sm:p-4 md:p-6 text-center h-full flex flex-col justify-between">
                   <div>
-                    <div className="mb-4">
+                    <div className="mb-2 sm:mb-3 md:mb-4">
                       <Image 
                         src="/corporate.png"
                         alt="CORPORATE" 
-                        width={180}
-                        height={48}
+                        width={140}
+                        height={37}
+                        sizes="(max-width: 640px) 140px, (max-width: 768px) 160px, 180px"
                         className="mx-auto"
                       />
                     </div>
-                    <p className="text-lg text-black font-semibold">
+                    <p className="text-base sm:text-lg text-black font-semibold">
                       Lead • Manage • Excel
                     </p>
                   </div>
-                  <div className="text-base text-black font-medium">
+                  <div className="text-sm sm:text-base text-black font-medium">
                     Event Management<br/>
                     Business Strategy<br/>
                     Leadership
@@ -160,28 +163,35 @@ const DomainPage = () => {
         </div>
       </div>
 
-      {/* Hill - Left Side (Forced to Screen Edge) */}
-      <div className="absolute bottom-16 w-96 h-56 z-10" style={{ left: '-115px' }}>
-        <Image src="/hill_sm.png" alt="Hill" fill className="object-contain" />
-      </div>
-
-      {/* Mario Pipe - Right Side */}
-      <div className="absolute bottom-16 right-0 w-28 h-40 z-10">
+      
+      
+      {/* Pipe - Left Side - Responsive sizing (Mirror of right side) */}
+      <div className="absolute bottom-12 sm:bottom-14 md:bottom-16 left-0 w-16 sm:w-20 md:w-24 lg:w-28 h-24 sm:h-28 md:h-32 lg:h-40 z-10">
         <Image src="/pipe_basic.png" alt="Pipe" width={203} height={305} className="object-contain h-full w-auto" />
       </div>
 
-      {/* Pipe Top - Right Side */}
-      <div className="absolute bottom-56 right-0 w-32 h-16 z-20">
+      {/* Pipe Top - Left Side - Responsive sizing */}
+      <div className="absolute bottom-36 sm:bottom-42 md:bottom-48 lg:bottom-56 left-0 w-20 sm:w-24 md:w-28 lg:w-32 h-10 sm:h-12 md:h-14 lg:h-16 z-20">
+        <Image src="/pipe_top.png" alt="Pipe Top" width={232} height={116} className="object-contain h-full w-auto" />
+      </div>
+
+      {/* Mario Pipe - Right Side - Responsive sizing */}
+      <div className="absolute bottom-12 sm:bottom-14 md:bottom-16 right-0 w-16 sm:w-20 md:w-24 lg:w-28 h-24 sm:h-28 md:h-32 lg:h-40 z-10">
+        <Image src="/pipe_basic.png" alt="Pipe" width={203} height={305} className="object-contain h-full w-auto" />
+      </div>
+
+      {/* Pipe Top - Right Side - Responsive sizing */}
+      <div className="absolute bottom-36 sm:bottom-42 md:bottom-48 lg:bottom-56 right-0 w-20 sm:w-24 md:w-28 lg:w-32 h-10 sm:h-12 md:h-14 lg:h-16 z-20">
         <Image src="/pipe_top.png" alt="Pipe Top" width={232} height={116} className="object-contain h-full w-auto" />
       </div>
 
       {/* Bottom Brick Ground */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-16 z-5"
+        className="absolute bottom-0 left-0 right-0 h-12 sm:h-14 md:h-16 z-5"
         style={{
           backgroundImage: 'url(/block_textured.png)',
           backgroundRepeat: 'repeat',
-          backgroundSize: '64px 64px',
+          backgroundSize: '32px 32px',
           backgroundPosition: 'bottom'
         }}
       ></div>

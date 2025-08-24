@@ -25,26 +25,26 @@ const Narrator: React.FC<NarratorProps> = ({ position, dialogue, upDialogue, dow
   const [hasBeenHovered, setHasBeenHovered] = useState(false);
   const narratorRef = useRef<HTMLDivElement>(null);
 
-  // Position styles based on progression
+  // Position styles based on progression with responsive sizing
   const getPositionStyles = () => {
     switch (position) {
       case 'top':
         return {
-          container: 'absolute bottom-83 right-4 z-50', // Position to stand on pipe top
-          character: 'w-20 h-24',
-          dialogueBox: 'absolute -left-48 top-2 w-44'
+          container: 'absolute bottom-36 sm:bottom-42 md:bottom-48 lg:bottom-56 right-4 sm:right-6 md:right-8 z-50', // Position to stand on pipe top
+          character: 'w-14 h-18 sm:w-16 sm:h-25 md:w-19 md:h-25',
+          dialogueBox: 'absolute -left-36 sm:-left-40 md:-left-48 top-2 w-32 sm:w-38 md:w-44'
         };
       case 'middle':
         return {
-          container: 'absolute top-1/2 right-8 z-50 transform -translate-y-1/2',
-          character: 'w-20 h-24',
-          dialogueBox: 'absolute -left-48 top-2 w-44'
+          container: 'absolute top-1/2 right-4 sm:right-6 md:right-8 z-50 transform -translate-y-1/2',
+          character: 'w-14 h-18 sm:w-16 sm:h-20 md:w-18 md:h-22',
+          dialogueBox: 'absolute -left-36 sm:-left-40 md:-left-48 top-2 w-32 sm:w-38 md:w-44'
         };
       case 'bottom':
         return {
-          container: 'absolute bottom-28 right-8 z-50',
-          character: 'w-20 h-24',
-          dialogueBox: 'absolute -left-48 -top-12 w-44'
+          container: 'absolute bottom-20 sm:bottom-24 md:bottom-28 right-4 sm:right-6 md:right-8 z-50',
+          character: 'w-14 h-18 sm:w-16 sm:h-20 md:w-18 md:h-22',
+          dialogueBox: 'absolute -left-36 sm:-left-40 md:-left-48 -top-12 w-32 sm:w-38 md:w-44'
         };
     }
   };
@@ -180,12 +180,12 @@ const Narrator: React.FC<NarratorProps> = ({ position, dialogue, upDialogue, dow
       {/* Dialogue Box */}
       {showDialogue && (
         <div className={styles.dialogueBox}>
-          <div className="bg-white border-4 border-black rounded-lg p-3 relative shadow-xl">
+          <div className="bg-white border-2 sm:border-3 md:border-4 border-black rounded-lg p-2 sm:p-3 relative shadow-xl">
             {/* Speech bubble tail */}
-            <div className="absolute right-[-12px] top-4 w-0 h-0 border-l-[12px] border-l-white border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent"></div>
-            <div className="absolute right-[-16px] top-4 w-0 h-0 border-l-[16px] border-l-black border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent"></div>
+            <div className="absolute right-[-8px] sm:right-[-10px] md:right-[-12px] top-4 w-0 h-0 border-l-[8px] sm:border-l-[10px] md:border-l-[12px] border-l-white border-t-[6px] sm:border-t-[7px] md:border-t-[8px] border-t-transparent border-b-[6px] sm:border-b-[7px] md:border-b-[8px] border-b-transparent"></div>
+            <div className="absolute right-[-12px] sm:right-[-14px] md:right-[-16px] top-4 w-0 h-0 border-l-[12px] sm:border-l-[14px] md:border-l-[16px] border-l-black border-t-[8px] sm:border-t-[9px] md:border-t-[10px] border-t-transparent border-b-[8px] sm:border-b-[9px] md:border-b-[10px] border-b-transparent"></div>
             
-            <p className="text-black text-xs font-bold leading-tight" style={{ fontFamily: 'Arial Black, sans-serif' }}>
+            <p className="text-black text-[10px] sm:text-xs font-bold leading-tight" style={{ fontFamily: 'Arial Black, sans-serif' }}>
               {currentText}
               {textIndex < currentDialogue.length && (
                 <span className="animate-pulse">|</span>
@@ -207,14 +207,14 @@ const Narrator: React.FC<NarratorProps> = ({ position, dialogue, upDialogue, dow
           alt="Queen Narrator" 
           width={80} 
           height={96} 
-          className="object-contain drop-shadow-lg"
+          className="object-contain drop-shadow-lg w-full h-full"
           priority
         />
       </div>
 
       {/* Floating animation sparkles */}
-      <div className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full animate-ping"></div>
-      <div className="absolute -top-1 right-2 w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
+      <div className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 w-2 sm:w-3 h-2 sm:h-3 bg-yellow-400 rounded-full animate-ping"></div>
+      <div className="absolute -top-1 right-1 sm:right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 bg-pink-400 rounded-full animate-pulse"></div>
     </div>
   );
 };
