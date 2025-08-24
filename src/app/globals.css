@@ -4,7 +4,15 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
+/* Super Mario 256 font (place font files in public/fonts/) */
+@font-face {
+  font-family: 'Super Mario 256';
+  src: url('/fonts/SuperMario256.woff2') format('woff2'),
+       url('/fonts/SuperMario256.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -22,7 +30,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Super Mario 256', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
