@@ -73,7 +73,7 @@ const DomainPage: React.FC = () => {
                 <div className="p-3 sm:p-4 md:p-6 text-center h-full flex flex-col justify-between">
                   <div>
                     <div className="mb-2 sm:mb-3 md:mb-4">
-                      <Image src="/creative.png" alt="CREATIVE" width={140} height={37} className="mx-auto" />
+                      <Image src="/CREATIVE.png" alt="CREATIVE" width={140} height={37} className="mx-auto" />
                     </div>
                     <p className="text-base sm:text-lg text-black font-semibold">The Creative Powerhouse of GCSRM!</p>
                   </div>
@@ -100,7 +100,7 @@ const DomainPage: React.FC = () => {
                 <div className="p-3 sm:p-4 md:p-6 text-center h-full flex flex-col justify-between">
                   <div>
                     <div className="mb-2 sm:mb-3 md:mb-4">
-                      <Image src="/corporate.png" alt="CORPORATE" width={140} height={37} className="mx-auto" />
+                      <Image src="/CORPORATE.png" alt="CORPORATE" width={140} height={37} className="mx-auto" />
                     </div>
                     <p className="text-base sm:text-lg text-black font-semibold">The Masterminds of GCSRM!</p>
                   </div>
