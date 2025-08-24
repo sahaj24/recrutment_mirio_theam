@@ -83,33 +83,39 @@ const RegistrationPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
 
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+    // Simulate API call
+    setTimeout(() => {
+      // Show success message with Mario sound effect feel
+      alert(`🎉 Welcome to GCSRM, ${formData.name}! 🎉\n\n` +
+            `Domain: ${formData.domain.replace(/^[^\-]+ \- /, '')}\n` +
+            `Year: ${formData.year}\n` +
+            `Email: ${formData.email}\n\n` +
+            `Your adventure begins now! 🚀`);
+      
+      console.log('Registration submitted:', formData);
+      
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        phone: '',
+        domain: '',
+        registrationNumber: '',
+        year: '',
+        email: ''
       });
-
-      const data = await response.json();
-
-      if (data.success) {
-        alert('Registration successful!');
-
-      } else {
-        alert('Registration failed: ' + data.error);
-      }
-    } catch (err) {
-      alert('An error occurred.');
-    }
-
-    setIsSubmitting(false);
+      
+      setIsSubmitting(false);
+      
+      // Here you would typically send the data to your backend
+      // Example: await fetch('/api/register', { method: 'POST', body: JSON.stringify(formData) })
+    }, 1500);
   };
 
   return (
