@@ -14,7 +14,7 @@ const Footer = () => {
 					backgroundRepeat: 'repeat',
 					backgroundSize: '34px 34px',
 				}}>
-				<div className="absolute inset-0 z-0"></div>
+				<div className="absolute inset-0 z-0 backdrop-blur-sm opacity-90"></div>
 				<div className="flex-grow grid mb-4 px-8 sm:px-24 sm:flex sm:justify-between lg:-mt-10 sm:items-center space-y-4 sm:space-y-0 relative z-10">
 					<div className="pr-7 sm:pr-0 text-center sm:text-left flex flex-col items-center justify-center lg:justify-start lg:items-start ml-4">
 						<div className="flex items-center justify-center">
