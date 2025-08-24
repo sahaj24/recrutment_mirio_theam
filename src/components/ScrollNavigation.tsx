@@ -9,7 +9,7 @@ const ScrollNavigation = () => {
   };
 
   return (
-    <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-3">
+    <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex-col space-y-3 hidden md:flex">
       {/* Hero Section */}
       <button
         onClick={() => scrollToSection('hero-section')}

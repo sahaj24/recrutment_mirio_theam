@@ -14,16 +14,15 @@ const DomainPage = () => {
   return (
     <div id="domains-section" className="h-screen relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: '#33a1fd' }}>
       
-      {/* Narrator - Middle position */}
-      <Narrator 
-        position="middle" 
-        dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
-        upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
-        downDialogue="Finally ready for the real test? 💀 Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
-      /> 
-        position="middle" 
-        dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! �⚡" 
-      />
+      {/* Narrator - Middle position - Hidden on mobile */}
+      <div className="hidden md:block">
+        <Narrator 
+          position="middle" 
+          dialogue="So you made it this far? 😏 Now choose your weapon, rookie! Technical nerds, Creative freaks, or Corporate sharks? Pick wrong and you're DONE! 💥⚡"
+          upDialogue="Running away from the challenge? 🙄 I knew you didn't have the guts! Go cry to mommy! 👑😤"
+          downDialogue="Finally ready for the real test? 💀 Time to prove you're not just talk! Choose wisely or GET WRECKED! ⚡"
+        />
+      </div>
       
       {/* Floating Clouds */}
       <div className="absolute top-8 left-8 w-32 h-20 opacity-90 animate-float">

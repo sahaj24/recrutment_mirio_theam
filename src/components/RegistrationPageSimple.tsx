@@ -119,70 +119,71 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div id="registration-section" className="min-h-screen relative overflow-hidden flex items-center justify-center py-8" style={{ backgroundColor: '#33a1fd' }}>
+    <div id="registration-section" className="min-h-screen relative overflow-hidden flex items-center justify-center py-6 sm:py-8 px-4 sm:px-6" style={{ backgroundColor: '#33a1fd' }}>
       
-      {/* Custom CSS for better placeholder visibility */}
+      {/* Simplified CSS */}
       <style jsx>{`
-        input::placeholder {
-          color: #374151 !important;
-          opacity: 1 !important;
+        input::placeholder, select {
+          color: #6b7280;
+          opacity: 1;
         }
-        select {
-          color: #374151;
+        
+        /* Minimal animations for better performance */
+        @keyframes gentleFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
         }
-        select option {
-          color: #374151;
+        
+        .animate-gentle-float {
+          animation: gentleFloat 8s ease-in-out infinite;
+        }
+        
+        /* Ensure proper input sizing */
+        input, select, button {
+          min-height: 44px;
+          font-size: 16px; /* Prevents iOS zoom */
         }
       `}</style>
       
-      {/* Floating Clouds */}
-      <div className="absolute top-8 left-8 w-32 h-20 opacity-80 animate-float">
+      {/* Floating Clouds - Simplified and fewer */}
+      <div className="absolute top-8 left-8 w-24 h-16 opacity-40 animate-gentle-float hidden sm:block">
         <Image src="/cloud-1.png" alt="Cloud" fill className="object-contain" />
       </div>
-      <div className="absolute top-12 right-12 w-36 h-24 opacity-80 animate-float-delayed">
+      <div className="absolute top-12 right-12 w-28 h-18 opacity-40 animate-gentle-float hidden sm:block" style={{ animationDelay: '2s' }}>
         <Image src="/cloud-2.png" alt="Cloud" fill className="object-contain" />
       </div>
 
-      {/* Floating Game Elements */}
-      <div className="absolute inset-0 pointer-events-none z-10">
-        {/* Question Blocks */}
-        <div className="absolute top-1/4 left-10 w-10 h-10 animate-pulse">
-          <Image src="/block_question.png" alt="Question Block" fill className="object-contain" />
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="text-center z-20 px-4 w-full max-w-2xl -mt-16">
+      {/* Main Content - Fully responsive */}
+      <div className="text-center z-20 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl px-2 sm:px-4 -mt-8 sm:-mt-12 md:-mt-16">
         
-        {/* Registration Title */}
-        <div className="mb-3">
-          <Image 
-            src="/start_your_adventure.png"
-            alt="START YOUR ADVENTURE" 
-            width={550}
-            height={130}
-            className="mx-auto drop-shadow-2xl"
-            priority
-          />
+        {/* Registration Title - Responsive sizing */}
+        <div className="mb-2 sm:mb-3 md:mb-4">
+          <div className="relative w-full h-16 sm:h-20 md:h-24 lg:h-32 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto">
+            <Image 
+              src="/start_your_adventure.png"
+              alt="START YOUR ADVENTURE" 
+              fill
+              className="object-contain drop-shadow-xl sm:drop-shadow-2xl"
+              priority
+              sizes="(max-width: 640px) 320px, (max-width: 768px) 448px, (max-width: 1024px) 512px, 640px"
+            />
+          </div>
         </div>
 
-        {/* Registration Form */}
-        <div className="max-w-md mx-auto">
-          <div className="bg-gradient-to-b from-yellow-300 to-yellow-500 rounded-lg border-4 border-black shadow-2xl p-5">
-            <form onSubmit={handleSubmit} className="space-y-3">
+        {/* Registration Form - Responsive container */}
+        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+          <div className="bg-gradient-to-b from-yellow-300 to-yellow-500 rounded-lg border-2 sm:border-3 md:border-4 border-black shadow-xl sm:shadow-2xl p-3 sm:p-4 md:p-5">
+            <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3">
               
               {/* Name Field */}
               <div>
-                <label className="block text-sm font-bold text-black mb-1" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                  🎮 PLAYER NAME
-                </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className={`w-full px-3 py-2 text-sm border-3 rounded focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
                     errors.name ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
                   }`}
                   placeholder="Enter your full name"
@@ -194,16 +195,13 @@ const RegistrationPage = () => {
 
               {/* Phone Number Field */}
               <div>
-                <label className="block text-sm font-bold text-black mb-1" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                  📱 PHONE NUMBER
-                </label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className={`w-full px-3 py-2 text-sm border-3 rounded focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
                     errors.phone ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
                   }`}
                   placeholder="Enter your phone number"
@@ -215,16 +213,13 @@ const RegistrationPage = () => {
 
               {/* Email Field */}
               <div>
-                <label className="block text-sm font-bold text-black mb-1" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                  📧 EMAIL ADDRESS
-                </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className={`w-full px-3 py-2 text-sm border-3 rounded focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
                     errors.email ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
                   }`}
                   placeholder="Enter your email address"
@@ -236,19 +231,16 @@ const RegistrationPage = () => {
 
               {/* Registration Number Field */}
               <div>
-                <label className="block text-sm font-bold text-black mb-1" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                  🎓 REGISTRATION NUMBER
-                </label>
                 <input
                   type="text"
                   name="registrationNumber"
                   value={formData.registrationNumber}
                   onChange={handleChange}
                   required
-                  className={`w-full px-3 py-2 text-sm border-3 rounded focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all ${
                     errors.registrationNumber ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
                   }`}
-                  placeholder="Enter your college registration number"
+                  placeholder="Enter registration number"
                 />
                 {errors.registrationNumber && (
                   <p className="text-red-600 text-xs font-bold mt-1">❌ {errors.registrationNumber}</p>
@@ -257,15 +249,12 @@ const RegistrationPage = () => {
 
               {/* Year Field */}
               <div>
-                <label className="block text-sm font-bold text-black mb-1" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                  📚 COLLEGE YEAR
-                </label>
                 <select
                   name="year"
                   value={formData.year}
                   onChange={handleChange}
                   required
-                  className={`w-full px-3 py-2 text-sm border-3 rounded focus:outline-none focus:ring-2 transition-all bg-white ${
+                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all bg-white ${
                     errors.year ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
                   }`}
                 >
@@ -284,41 +273,42 @@ const RegistrationPage = () => {
 
               {/* Domain Selection */}
               <div>
-                <label className="block text-sm font-bold text-black mb-1" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                  🎯 CHOOSE YOUR DOMAIN
-                </label>
                 <select
                   name="domain"
                   value={formData.domain}
                   onChange={handleChange}
                   required
-                  className={`w-full px-3 py-2 text-sm border-3 rounded focus:outline-none focus:ring-2 transition-all bg-white ${
+                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border-2 sm:border-3 rounded focus:outline-none focus:ring-2 transition-all bg-white ${
                     errors.domain ? 'border-red-500 focus:ring-red-400' : 'border-black focus:ring-blue-400'
                   }`}
                 >
                   <option value="">Select your domain</option>
-                  <option value="Technical">💻 Technical - Code, Build, Innovate</option>
-                  <option value="Creative">🎨 Creative - Design, Create, Inspire</option>
-                  <option value="Corporate">💼 Corporate - Lead, Manage, Excel</option>
+                  <option value="Technical">Technical - Code, Build, Innovate</option>
+                  <option value="Creative">Creative - Design, Create, Inspire</option>
+                  <option value="Corporate">Corporate - Lead, Manage, Excel</option>
                 </select>
                 {errors.domain && (
                   <p className="text-red-600 text-xs font-bold mt-1">❌ {errors.domain}</p>
                 )}
               </div>
 
-              {/* Submit Button */}
+              {/* Submit Button - Touch-friendly sizing */}
               <div className="pt-2">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full font-bold py-3 px-4 rounded border-3 border-black shadow-lg transition-all duration-200 ${
+                  className={`w-full font-bold py-3 sm:py-3.5 px-4 rounded border-2 sm:border-3 border-black shadow-lg transition-all duration-200 text-sm sm:text-base ${
                     isSubmitting 
                       ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 transform hover:scale-105'
+                      : 'bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 active:scale-95 transform hover:scale-105'
                   }`}
-                  style={{ fontFamily: 'Arial Black, sans-serif', fontSize: '1rem' }}
+                  style={{ fontFamily: 'Arial Black, sans-serif', minHeight: '44px' }}
                 >
-                  {isSubmitting ? '⏳ JOINING...' : '🚀 JOIN THE ADVENTURE! 🚀'}
+                  {isSubmitting ? (
+                    <span>JOINING...</span>
+                  ) : (
+                    <span>JOIN THE ADVENTURE!</span>
+                  )}
                 </button>
               </div>
 
@@ -328,24 +318,26 @@ const RegistrationPage = () => {
 
       </div>
 
-      {/* Narrator - Bottom position on ground */}
-      <Narrator 
-        position="bottom" 
-        dialogue="Final boss fight! 💀 Fill this form perfectly or GET REKT! One wrong move and you're OUT! No mercy for weaklings here! 🔥👑"
-        upDialogue="Chickening out now? 😈 I KNEW you weren't champion material! Pathetic little coward! 💀👑"
-        hoverDialogues={[
-          "What you want, slowpoke? 🙄 Stop it and FILL THE FORM! Time is ticking, loser! ⏰",
-          "SERIOUSLY?! 😤 You're slower than a dead turtle! JUST REGISTER ALREADY or get out of my sight! 👑⚡"
-        ]}
-      />
+      {/* Narrator - Hidden on mobile and tablets */}
+      <div className="hidden lg:block">
+        <Narrator 
+          position="bottom" 
+          dialogue="If you want to join us then fill the form !"
+          upDialogue="If you want to join us then fill the form !"
+          hoverDialogues={[
+            "Hey did you filled the form !",
+            "SERIOUSLY?! What are you wating for "
+          ]}
+        />
+      </div>
 
-      {/* Bottom Brick Ground */}
+      {/* Bottom Brick Ground - Responsive sizing */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-16 z-5"
+        className="absolute bottom-0 left-0 right-0 h-8 sm:h-12 md:h-16 z-5"
         style={{
           backgroundImage: 'url(/block_textured.png)',
           backgroundRepeat: 'repeat',
-          backgroundSize: '64px 64px',
+          backgroundSize: 'clamp(32px, 4vw, 64px) clamp(32px, 4vw, 64px)',
           backgroundPosition: 'bottom'
         }}
       ></div>

@@ -105,11 +105,11 @@ const HeroSection = () => {
         }
       `}</style>
       
-      {/* Floating Clouds */}
-      <div className="absolute top-16 left-16 w-48 h-32 opacity-90 animate-float">
+      {/* Floating Clouds - Responsive positioning with better mobile spacing */}
+      <div className="absolute top-8 left-2 sm:top-12 sm:left-8 md:top-16 md:left-16 w-32 sm:w-40 md:w-48 h-20 sm:h-26 md:h-32 opacity-90 animate-float">
         <Image src="/cloud-1.png" alt="Cloud" fill className="object-contain" />
       </div>
-      <div className="absolute top-24 right-20 w-52 h-36 opacity-90 animate-float-delayed">
+      <div className="absolute top-12 right-2 sm:top-18 sm:right-12 md:top-24 md:right-20 w-36 sm:w-44 md:w-52 h-24 sm:h-30 md:h-36 opacity-90 animate-float-delayed">
         <Image src="/cloud-2.png" alt="Cloud" fill className="object-contain" />
       </div>
 
@@ -182,8 +182,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Palm Tree - Left Side (Forced to Screen Edge) */}
-      <div className="absolute bottom-16 w-64 h-130 z-10" style={{ left: '-60px' }}>
+      {/* Palm Tree - Left Side (Forced to Screen Edge) - Responsive sizing */}
+      <div className="absolute bottom-16 w-32 sm:w-48 md:w-64 h-65 sm:h-98 md:h-130 z-10" style={{ left: '-30px' }}>
         <Image src="/tree_palm.png" alt="Palm Tree" fill className="object-contain" />
       </div>
 
@@ -197,11 +197,11 @@ const HeroSection = () => {
         <Image src="/pipe_top.png" alt="Pipe Top" width={232} height={116} className="object-contain h-full w-auto" />
       </div>
 
-      {/* Question Blocks - Left and Right, closer together */}
-      <div className="absolute left-20 w-16 h-16 z-20" style={{ bottom: '300px' }}>
+      {/* Question Blocks - Left and Right, closer together - Hidden on mobile */}
+      <div className="absolute left-20 w-16 h-16 z-20 hidden md:block" style={{ bottom: '300px' }}>
         <Image src="/block_question.png" alt="Question Block" fill className="object-contain hover:scale-110 transition-transform cursor-pointer" />
       </div>
-      <div className="absolute w-16 h-16 z-20" style={{ bottom: '300px', right: '288px' }}>
+      <div className="absolute w-16 h-16 z-20 hidden md:block" style={{ bottom: '300px', right: '288px' }}>
         <Image src="/block_question-2.png" alt="Question Block" fill className="object-contain hover:scale-110 transition-transform cursor-pointer" />
       </div>
 
@@ -237,16 +237,18 @@ const HeroSection = () => {
         </div>
       )}
 
-      {/* Narrator - Top position on pipe */}
-      <Narrator 
-        position="top" 
-        dialogue="Listen up, noob! 👑 Think you got what it takes to join GCSRM? Prove it! This ain't a playground - only legends survive here!"
-        upDialogue="Back already? 😏 Can't handle the heat? This is just the beginning, weakling! 🔥"
-        hoverDialogues={[
-          "What you want, peasant? 😤 I'm busy ruling this kingdom! Speak fast or GET LOST! 👑💀",
-          "STILL bothering me? 🙄 You're more annoying than a glitched NPC! Either register or SCRAM! ⚡👑"
-        ]}
-      />
+      {/* Narrator - Top position on pipe - Hidden on mobile */}
+      <div className="hidden md:block">
+        <Narrator 
+          position="top" 
+          dialogue="Hey player, welcome to GCSRM !"
+          upDialogue=""
+          hoverDialogues={[
+            "Hey !",
+            "Hey again !"
+          ]}
+        />
+      </div>
     </div>
   );
 };
